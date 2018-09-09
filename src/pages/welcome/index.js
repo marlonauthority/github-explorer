@@ -64,6 +64,10 @@ export default class Welcome extends Component {
         <StatusBar barStyle="light-content" />
           <Text style={styles.title}>Bem-vindo</Text>
           <Text style={styles.text}>Para continuar, precisamos que você informe seu usuário no Github.</Text>
+
+          { !!this.state.errorMessage
+            && <Text style={styles.error}>{this.state.errorMessage}</Text> }
+
           <View style={styles.form}>
             <TextInput
               style={styles.input}
