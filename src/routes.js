@@ -1,5 +1,9 @@
+import React from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
+import { metrics } from 'styles';
+import HeaderRight from 'components/HeaderRight';
 
+//pages
 import Welcome from 'pages/welcome';
 import Repositories from 'pages/repositories';
 import Organizations from 'pages/organizations';
@@ -15,6 +19,12 @@ const createNavigator = (isLogged = false) =>
     },
   }, {
     initialRouteName: isLogged ? 'User' : 'Welcome',
+    navigationOptions: {
+      headerStyle: {
+        paddingHorizontal: metrics.basePadding,
+      },
+      headerRight: <HeaderRight/>,
+    },
   });
 
 export default createNavigator;
