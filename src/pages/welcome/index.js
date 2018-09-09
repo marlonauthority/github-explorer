@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   StatusBar,
   ActivityIndicator,
+  AsyncStorage
 } from 'react-native';
 
 import styles from './styles';
@@ -37,6 +38,10 @@ export default class Welcome extends Component {
     return user;
   }
 
+  saveUser = async (username) => {
+    await AsyncStorage.setItem('@Githuber:username', username);
+  }
+
   signIn = async () => {
     const { username } = this.state;
     if (username.length === 0) return;
@@ -45,6 +50,8 @@ export default class Welcome extends Component {
 
     try {
       await this.checkUserExists(username);
+
+      await this.saveUser(username);
 
       const resetAction = NavigationActions.reset({
         index: 0,
