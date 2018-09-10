@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
-import { metrics } from 'styles';
+import { colors, metrics } from 'styles';
 import HeaderRight from 'components/HeaderRight';
 
 //pages
@@ -15,16 +15,27 @@ const createNavigator = (isLogged = false) =>
       screen: TabNavigator({
         Repositories: { screen: Repositories },
         Organizations: { screen: Organizations },
+      }, {
+        tabBarPosition: 'bottom',
+        tabBarOptions: {
+          showIcon: true,
+          showLabel: false,
+          activeTintColor: colors.white,
+          inactiveTintColor: colors.whiteTransparent,
+          style: {
+            backgroundColor: colors.secundary,
+          },
+        },
       }),
     },
   }, {
     initialRouteName: isLogged ? 'User' : 'Welcome',
-    navigationOptions: {
+    navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        paddingHorizontal: metrics.basePadding,
-      },
-      headerRight: <HeaderRight/>,
-    },
+          paddingHorizontal: metrics.basePadding,
+        },
+        headerRight: <HeaderRight navigation={navigation} />,
+    }),
   });
 
 export default createNavigator;
