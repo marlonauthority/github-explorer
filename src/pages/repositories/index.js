@@ -9,6 +9,7 @@ import {
     FlatList,
 } from 'react-native';
 import styles from './styles';
+import RepositoryItem from './components/RepositoryItem';
 
 export default class Repositories extends Component {
   static navigationOptions = {
@@ -32,11 +33,7 @@ export default class Repositories extends Component {
     this.setState({ data: response.data, loading: false })
   }
 
-  renderListItem  = ({ item }) => (
-    <Text>
-      { item.full_name }
-    </Text>
-  )
+  renderListItem  = ({ item }) => <RepositoryItem repository={item} />
 
   renderList = () => (
     <FlatList
